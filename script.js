@@ -12,6 +12,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Mobile menu toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navMenu = document.querySelector('nav ul');
+
+if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        
+        // Animate hamburger menu
+        const spans = this.querySelectorAll('span');
+        spans.forEach((span, index) => {
+            span.classList.toggle('active');
+        });
+    });
+
+    // Close menu when clicking a link
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
 // Form submission handling
 const form = document.querySelector('form');
 if (form) {
@@ -48,30 +78,41 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(card);
     });
 
-    // Add tilt effect to cards
-    cards.forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
+    // Add tilt effect to cards (desktop only)
+    if (window.matchMedia('(hover: hover)').matches) {
+        cards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
         });
-    });
+    }
 
-    // Add parallax effect to hero image
+    // Add parallax effect to hero image (mobile-friendly)
     const heroImage = document.querySelector('.hero-image img');
     if (heroImage) {
+        let ticking = false;
         window.addEventListener('scroll', function() {
-            const scrollPosition = window.pageYOffset;
-            heroImage.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const scrollPosition = window.pageYOffset;
+                    if (scrollPosition < window.innerHeight) {
+                        heroImage.style.transform = `translateY(${scrollPosition * 0.15}px)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
 
