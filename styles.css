@@ -67,6 +67,8 @@ nav {
     padding: 1rem 0;
     max-width: 1200px;
     margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .logo img {
@@ -77,6 +79,8 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
