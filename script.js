@@ -52,6 +52,77 @@ if (form) {
     });
 }
 
+// Star Rating System
+const stars = document.querySelectorAll('.star');
+const ratingMessage = document.getElementById('ratingMessage');
+const submitRatingBtn = document.getElementById('submitRating');
+
+let currentRating = 0;
+
+if (stars.length > 0) {
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            currentRating = parseInt(this.getAttribute('data-value'));
+            updateStars(currentRating);
+        });
+
+        star.addEventListener('mouseenter', function() {
+            const hoverValue = parseInt(this.getAttribute('data-value'));
+            previewStars(hoverValue);
+        });
+
+        star.addEventListener('mouseleave', function() {
+            updateStars(currentRating);
+        });
+    });
+
+    function updateStars(rating) {
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+                star.style.color = '#800020';
+            } else {
+                star.classList.remove('active');
+                star.style.color = '#ddd';
+            }
+        });
+    }
+
+    function previewStars(rating) {
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.style.color = '#800020';
+            } else {
+                star.style.color = '#ddd';
+            }
+        });
+    }
+}
+
+if (submitRatingBtn) {
+    submitRatingBtn.addEventListener('click', function() {
+        if (currentRating === 0) {
+            alert('Please select a rating before submitting!');
+            return;
+        }
+        
+        const message = ratingMessage ? ratingMessage.value.trim() : '';
+        
+        if (message) {
+            alert(`Thank you for your ${currentRating}-star rating and feedback!`);
+        } else {
+            alert(`Thank you for your ${currentRating}-star rating!`);
+        }
+        
+        // Reset the rating
+        currentRating = 0;
+        updateStars(0);
+        if (ratingMessage) {
+            ratingMessage.value = '';
+        }
+    });
+}
+
 // Add some interactive effects
 document.addEventListener('DOMContentLoaded', function() {
     // Animate elements on scroll with stagger delays

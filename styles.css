@@ -465,6 +465,112 @@ footer {
     animation: fadeIn 1s ease-in 1.7s both;
 }
 
+/* Home service note */
+.home-service-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 500;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Star Rating System */
+.rating-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rating-section h3 {
+    text-align: center;
+    color: #800020;
+    margin-bottom: 1.5rem;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.star {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: #800020;
+    transform: scale(1.1);
+}
+
+.rating-message textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1rem;
+    resize: vertical;
+}
+
+.rating-message textarea:focus {
+    outline: none;
+    border-color: #800020;
+    box-shadow: 0 0 10px rgba(128, 0, 32, 0.2);
+}
+
+/* Mobile Responsive for Rating Section */
+@media (max-width: 768px) {
+    .rating-section {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .star {
+        font-size: 1.8rem;
+    }
+    
+    .rating-message textarea {
+        min-height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rating-section {
+        padding: 1.2rem;
+    }
+    
+    .rating-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .star {
+        font-size: 1.5rem;
+        gap: 8px;
+    }
+    
+    .home-service-note {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+    }
+}
+
 /* Mobile Navigation */
 .mobile-menu-btn {
     display: none;
