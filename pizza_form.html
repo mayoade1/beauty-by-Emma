@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Order Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Pizza Palace</h1>
+            </div>
+        </nav>
+    </header>
+
+    <section id="order">
+        <div class="container">
+            <h2>Order Your Pizza</h2>
+            <form id="pizzaForm">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Phone" required>
+                <select required>
+                    <option value="">Select Pizza Size</option>
+                    <option value="small">Small - $10</option>
+                    <option value="medium">Medium - $15</option>
+                    <option value="large">Large - $20</option>
+                </select>
+                <fieldset>
+                    <legend>Toppings (Select multiple)</legend>
+                    <label><input type="checkbox" name="toppings" value="pepperoni"> Pepperoni</label>
+                    <label><input type="checkbox" name="toppings" value="mushrooms"> Mushrooms</label>
+                    <label><input type="checkbox" name="toppings" value="onions"> Onions</label>
+                    <label><input type="checkbox" name="toppings" value="peppers"> Peppers</label>
+                    <label><input type="checkbox" name="toppings" value="olives"> Olives</label>
+                    <label><input type="checkbox" name="toppings" value="cheese"> Extra Cheese</label>
+                </fieldset>
+                <input type="number" placeholder="Quantity" min="1" required>
+                <textarea placeholder="Special instructions"></textarea>
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Pizza Palace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
